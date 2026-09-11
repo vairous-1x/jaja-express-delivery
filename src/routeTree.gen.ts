@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JoinDriverRouteImport } from './routes/join-driver'
+import { Route as JoinRestaurantRouteImport } from './routes/join-restaurant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinDriverRoute = JoinDriverRouteImport.update({
+  id: '/join-driver',
+  path: '/join-driver',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRestaurantRoute = JoinRestaurantRouteImport.update({
+  id: '/join-restaurant',
+  path: '/join-restaurant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/join-driver': typeof JoinDriverRoute
+  '/join-restaurant': typeof JoinRestaurantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/join-driver': typeof JoinDriverRoute
+  '/join-restaurant': typeof JoinRestaurantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/join-driver': typeof JoinDriverRoute
+  '/join-restaurant': typeof JoinRestaurantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/join-driver' | '/join-restaurant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/join-driver' | '/join-restaurant'
+  id: '__root__' | '/' | '/join-driver' | '/join-restaurant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JoinDriverRoute: typeof JoinDriverRoute
+  JoinRestaurantRoute: typeof JoinRestaurantRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join-driver': {
+      id: '/join-driver'
+      path: '/join-driver'
+      fullPath: '/join-driver'
+      preLoaderRoute: typeof JoinDriverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join-restaurant': {
+      id: '/join-restaurant'
+      path: '/join-restaurant'
+      fullPath: '/join-restaurant'
+      preLoaderRoute: typeof JoinRestaurantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JoinDriverRoute: JoinDriverRoute,
+  JoinRestaurantRoute: JoinRestaurantRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

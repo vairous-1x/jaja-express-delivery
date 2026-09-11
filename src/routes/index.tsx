@@ -1,24 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { Hero } from "@/components/landing/Hero";
+import { Categories } from "@/components/landing/Categories";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { WhyUs } from "@/components/landing/WhyUs";
+import { RestaurantShowcase } from "@/components/landing/RestaurantShowcase";
+import { Partners } from "@/components/landing/Partners";
+import { Faq } from "@/components/landing/Faq";
+import { Contact } from "@/components/landing/Contact";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "3jaja Delivery — أسرع خدمة توصيل أكل في منطقتك" },
+      {
+        name: "description",
+        content:
+          "3jaja Delivery: livraison de repas, courses et petites commissions en Tunisie. Commandez en quelques clics et suivez votre livreur en direct.",
+      },
+      { property: "og:title", content: "3jaja Delivery — أسرع خدمة توصيل أكل في منطقتك" },
+      {
+        property: "og:description",
+        content: "كلي ما تحب، يوصلك لدارك ❤️ — مطاعم، قضيان وتوصيل سريع في تونس.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: LandingPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function LandingPage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <Hero />
+        <Categories />
+        <HowItWorks />
+        <WhyUs />
+        <RestaurantShowcase />
+        <Partners />
+        <Faq />
+        <Contact />
+      </main>
+      <SiteFooter />
     </div>
   );
 }
