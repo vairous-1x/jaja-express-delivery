@@ -16,13 +16,21 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        /* 3jaja brand variants */
+        hero: "brand-gradient text-primary-foreground shadow-brand hover:brightness-110 active:brightness-95",
+        accent: "accent-gradient text-accent-foreground shadow-accent hover:brightness-105",
+        brandOutline:
+          "border-2 border-primary/25 bg-card text-primary hover:border-primary hover:bg-primary/5",
+        onBrand: "bg-card text-primary shadow hover:bg-card/90",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
+        xl: "h-13 rounded-2xl px-8 text-base font-bold",
         icon: "h-9 w-9",
       },
+
     },
     defaultVariants: {
       variant: "default",
