@@ -23,6 +23,8 @@ type I18nValue = {
   dir: "rtl" | "ltr";
   setLocale: (locale: Locale) => void;
   t: (key: TranslationKey) => string;
+  /** Inline translation for screen-local copy: pick({ ar, fr, en }). */
+  pick: (text: { ar: string; fr: string; en: string }) => string;
 };
 
 const I18nContext = createContext<I18nValue | null>(null);
@@ -59,7 +61,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     [locale],
   );
 
-  const value = useMemo<I18nValue>(() => ({ locale, dir, setLocale, t }), [locale, dir, setLocale, t]);
+  const pick = useCallback((text: { ar: string; fr: string; en: string }) => text[locale], [locale]);
+
+  const value = useMemo<I18nValue>(
+    () => ({ locale, dir, setLocale, t, pick }),
+    [locale, dir, setLocale, t, pick],
+  );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
