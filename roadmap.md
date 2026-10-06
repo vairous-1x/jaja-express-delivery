@@ -7,7 +7,8 @@ Approved plan: `.lovable/plan/3jaja-delivery-architecture-build-plan-2026-09-11.
 - [x] Logo, favicon, hero imagery
 - [x] i18n (AR default RTL, FR, EN) with translation keys
 - [x] Public landing page (hero, how it works, why, restaurants, FAQ, contact)
-- [ ] Join as restaurant / join as driver pages
+- [x] Join as restaurant / join as driver pages
+- [x] Phone install support (Add to Home Screen)
 
 ## Phase 2 — Backend foundation
 - [ ] Enable Lovable Cloud
